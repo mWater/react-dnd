@@ -40,9 +40,11 @@ export default function decorateHandler({
       return this.decoratedComponentInstance;
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+      return true;
       return !arePropsEqual(nextProps, this.props) ||
-             !shallowEqual(nextState, this.state);
+             !shallowEqual(nextState, this.state) ||
+             !shallowEqual(nextContext, this.context);
     }
 
     constructor(props, context) {
